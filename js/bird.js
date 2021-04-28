@@ -25,7 +25,7 @@ let bird = {
 			if (bird.div.offsetTop < 0) {  
 				bird.fallSpeed = 2; //这里用于控制小鸟不要飞出界面
 			}
-			if (bird.div.offsetTop >= 395) {
+			if (bird.div.offsetTop >= 1400) {
 				bird.fallSpeed = 0;
 				clearInterval(bird.flyTimer); //一旦飞到地面，清除定时器
 				clearInterval(bird.wingTimer); //清除翅膀摆动定时器

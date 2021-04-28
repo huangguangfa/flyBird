@@ -40,7 +40,7 @@ function Block() {
 	};
 	
 	this.moveBlock = function() { //控制管道移动的方法
-		this.upDivWrap.style.left = this.upDivWrap.offsetLeft - 3 + "px";
-		this.downDivWrap.style.left = this.downDivWrap.offsetLeft - 3 + "px";
+		this.upDivWrap.style.left = this.upDivWrap.offsetLeft + 20 + "px";
+		this.downDivWrap.style.left = this.downDivWrap.offsetLeft + 20 + "px";
 	};	
 }

@@ -3,10 +3,9 @@ let baseObj = {
 	randomNum: function(min, max) {
 		return parseInt(Math.random() * (max - min + 1) + min);
 	},
-	//两个矩形元素之间的碰撞检测 obj1 鸟 obj2建筑物
+	//两个矩形元素之间的碰撞检测 obj1建筑物  obj2鸟
 	rectangleCrashExamine: function (obj1, obj2) {
 			// offsetWidth: 为元素的width+元素的padding+边框的宽度
-			console.log(obj1,obj2)
 			let obj1Left = obj1.offsetLeft;
 			
 			let obj1Width = obj1.offsetLeft + obj1.offsetWidth;

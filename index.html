@@ -85,7 +85,7 @@
 					blocksArr[i].moveBlock();
 					let x = baseObj.rectangleCrashExamine(blocksArr[i].downDivWrap, bird.div);
 					let y = baseObj.rectangleCrashExamine(blocksArr[i].upDivWrap, bird.div);
-					let z = bird.div.offsetTop >= 390;
+					let z = bird.div.offsetTop >= 1400;
 					if (x || y || z) {
 						window.clearInterval(landTimer);//清除landTimer定时器
 						bird.fallSpeed = 0; //小鸟下落
@@ -95,33 +95,32 @@
 					}
 				}
 				if (blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (450 - blockDistance)) {
-						blockDistance = baseObj.randomNum(130,250);
-						let newBlock = new Block();
-						newBlock.createBlock();
-						blocksArr.push(newBlock);
+					blockDistance = baseObj.randomNum(130,250);
+					let newBlock = new Block();
+					newBlock.createBlock();
+					blocksArr.push(newBlock);
 				}
 				
 				if (blocksArr[0].downDivWrap.offsetLeft == -12) {
-						score++;//积分面板
-						if (score < 10) {
-							jsNum1.style.backgroundImage = "url(img/" + score + ".jpg)";
-						} else if (score < 100) {
-							jsNum2.style.display = "block";
-							jsNum1.style.backgroundImage = "url(img/" + parseInt(score/10) + ".jpg)";
-							jsNum2.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
-						} else if (score < 1000) {
-							jsNum3.style.display = "block";
-							jsNum1.style.backgroundImage = "url(img/" + parseInt(score/100) + ".jpg)";
-							jsNum2.style.backgroundImage = "url(img/" + parseInt(score/10)%10 + ".jpg)";
-							jsNum3.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
-						}
-						console.log(score);
+					score++;//积分面板
+					if (score < 10) {
+						jsNum1.style.backgroundImage = "url(img/" + score + ".jpg)";
+					} else if (score < 100) {
+						jsNum2.style.display = "block";
+						jsNum1.style.backgroundImage = "url(img/" + parseInt(score/10) + ".jpg)";
+						jsNum2.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
+					} else if (score < 1000) {
+						jsNum3.style.display = "block";
+						jsNum1.style.backgroundImage = "url(img/" + parseInt(score/100) + ".jpg)";
+						jsNum2.style.backgroundImage = "url(img/" + parseInt(score/10)%10 + ".jpg)";
+						jsNum3.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
+					}
 				}
 				
 				if (blocksArr[0].downDivWrap.offsetLeft < -50) {
-						jsWrapBg.removeChild(blocksArr[0].downDivWrap);
-						jsWrapBg.removeChild(blocksArr[0].upDivWrap);
-						blocksArr.shift(blocksArr[0]);
+					jsWrapBg.removeChild(blocksArr[0].downDivWrap);
+					jsWrapBg.removeChild(blocksArr[0].upDivWrap);
+					blocksArr.shift(blocksArr[0]);
 				}
 			}
 		}
@@ -135,7 +134,7 @@
 			bird.flyBird(); //控制小鸟飞翔下落
 			bird.wingWave(); //逐帧动画，小鸟煽动翅膀
 			jsWrapBg.onclick = function(){
-				bird.fallSpeed = -8;
+				bird.fallSpeed = -12;
 			};
 			let b = new Block();
 			b.createBlock();		
