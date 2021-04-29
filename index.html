@@ -94,6 +94,7 @@
 						jsGameOver.style.display = "block"; // 显示gameover面板
 					}
 				}
+				//控制管道出来的距离
 				if (blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (450 - blockDistance)) {
 					blockDistance = baseObj.randomNum(130,250);
 					let newBlock = new Block();
