@@ -68,7 +68,6 @@
 		
 		let jsGrassLand1 = document.getElementById("grassLand1"); //获取草地1
 		let jsGrassLand2 = document.getElementById("grassLand2"); //获取草地2
-		
 		let landTimer = setInterval(landRun,30); //让草地动起来的定时器
 		function landRun() {
 			if (jsGrassLand1.offsetLeft <= -343) {
@@ -94,7 +93,8 @@
 						jsGameOver.style.display = "block"; // 显示gameover面板
 					}
 				}
-				if ( blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (300 - blockDistance) ) {
+				//控制管道出来的距离
+				if (blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (300 - blockDistance)) {
 					blockDistance = baseObj.randomNum(130,250);
 					let newBlock = new Block();
 					newBlock.createBlock();
@@ -116,8 +116,8 @@
 						jsNum3.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
 					}
 				}
-				
-				if (blocksArr[0].downDivWrap.offsetLeft < -50) {
+				//移除管道
+				if (blocksArr[0].downDivWrap.offsetLeft < -180) {
 					jsWrapBg.removeChild(blocksArr[0].downDivWrap);
 					jsWrapBg.removeChild(blocksArr[0].upDivWrap);
 					blocksArr.shift(blocksArr[0]);
@@ -137,7 +137,7 @@
 				bird.fallSpeed = -12;
 			};
 			let b = new Block();
-			b.createBlock();		
+			b.createBlock();	
 			blocksArr.push(b);
 			jsNum1.style.display = "block";
 			//待添加功能
