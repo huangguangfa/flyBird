@@ -4,9 +4,10 @@
 		<meta charset="utf-8" />
 		<title>Fly Bird</title>
 		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<meta name="viewport" content="user-scalable=no" />
 	</head>
 	<body>
-		 <!--游戏背景-->
+		<!--游戏背景-->
 		<div id="wrapBg"> 
 			<div id="start_box">
 				<!--开始标题-->
@@ -41,7 +42,7 @@
 		let jsHeadTitle = document.getElementById("headTitle");// 获取标题
 		let jsHeadBird = document.getElementById("headBird"); // 获取标题中小鸟
 		let blocksArr = [];  //用来储存block的数组
-		let blockDistance = baseObj.randomNum(120,350);
+		let blockDistance = baseObj.randomNum(130,200);
 		
 		let jsScore = document.getElementById("score");
 		let jsNum1 = document.getElementById("num1");
@@ -82,8 +83,10 @@
 			if (blocksArr.length) {
 				for (let i = 0; i < blocksArr.length; i++) {
 					blocksArr[i].moveBlock();
+					//检查是否碰撞
 					let x = baseObj.rectangleCrashExamine(blocksArr[i].downDivWrap, bird.div);
 					let y = baseObj.rectangleCrashExamine(blocksArr[i].upDivWrap, bird.div);
+					// 检查鸟是否掉地上
 					let z = bird.div.offsetTop >= 1400;
 					if (x || y || z) {
 						window.clearInterval(landTimer);//清除landTimer定时器
@@ -93,15 +96,35 @@
 						jsGameOver.style.display = "block"; // 显示gameover面板
 					}
 				}
-				//控制管道出来的距离
-				if (blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (300 - blockDistance)) {
-					blockDistance = baseObj.randomNum(130,250);
+
+				//控制管道出来的距离 400   500 - 150
+				if (blocksArr[blocksArr.length - 1].downDivWrap.offsetLeft < (700 - blockDistance)) {
+					blockDistance = baseObj.randomNum(130,200);
 					let newBlock = new Block();
 					newBlock.createBlock();
 					blocksArr.push(newBlock);
 				}
-				
-				if (blocksArr[0].downDivWrap.offsetLeft == -12) {
+				// if (blocksArr[0].downDivWrap.offsetLeft == -100 ) {
+				// 	score++;//积分面板
+				// 	if (score < 10) {
+				// 		jsNum1.style.backgroundImage = "url(img/" + score + ".jpg)";
+				// 	} else if (score < 100) {
+				// 		jsNum2.style.display = "block";
+				// 		jsNum1.style.backgroundImage = "url(img/" + parseInt(score/10) + ".jpg)";
+				// 		jsNum2.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
+				// 	} else if (score < 1000) {
+				// 		jsNum3.style.display = "block";
+				// 		jsNum1.style.backgroundImage = "url(img/" + parseInt(score/100) + ".jpg)";
+				// 		jsNum2.style.backgroundImage = "url(img/" + parseInt(score/10)%10 + ".jpg)";
+				// 		jsNum3.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
+				// 	}
+				// }
+				//移除管道
+				if (blocksArr[0].downDivWrap.offsetLeft < -170) {
+					jsWrapBg.removeChild(blocksArr[0].downDivWrap);
+					jsWrapBg.removeChild(blocksArr[0].upDivWrap);
+					blocksArr.shift(blocksArr[0]);
+					//添加积分面板
 					score++;//积分面板
 					if (score < 10) {
 						jsNum1.style.backgroundImage = "url(img/" + score + ".jpg)";
@@ -115,12 +138,6 @@
 						jsNum2.style.backgroundImage = "url(img/" + parseInt(score/10)%10 + ".jpg)";
 						jsNum3.style.backgroundImage = "url(img/" + score%10 + ".jpg)";
 					}
-				}
-				//移除管道
-				if (blocksArr[0].downDivWrap.offsetLeft < -180) {
-					jsWrapBg.removeChild(blocksArr[0].downDivWrap);
-					jsWrapBg.removeChild(blocksArr[0].upDivWrap);
-					blocksArr.shift(blocksArr[0]);
 				}
 			}
 		}
@@ -140,8 +157,6 @@
 			b.createBlock();	
 			blocksArr.push(b);
 			jsNum1.style.display = "block";
-			//待添加功能
-			//点击开始按键进入游戏界面
 		}
 		
 		jsOkBtn.onclick = function() {
